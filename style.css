@@ -7,7 +7,7 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 90vh;
   font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   background: #f8fafc;
 }
@@ -24,17 +24,28 @@ header {
   align-items: center;
   justify-content: space-between;
   max-width: 1200px;
+  max-height: 2.5em;
   margin: 0 auto;
   padding: 1.0rem 1.2rem 1.2rem 0;
 }
-
 .logo {
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 2.6rem;
   letter-spacing: 2px;
   margin-left: 1.2rem;
   line-height: 1;
   padding: 0;
+  display: inline-flex;
+  align-items: baseline; /* 让主副标题基线对齐 */
+  gap: 8px;
+}
+
+.logo-subtitle {
+  font-size: 1.2rem;         /* 副标题小一点 */
+  font-weight: 400;          /* 稍轻一点 */
+  color: #f3f0f0;               /* 或 #888，根据风格调浅一点 */
+  letter-spacing: 0;
+  margin-top: 0.3rem;        /* 轻微上移，调节对齐 */
 }
 
 nav a {
@@ -53,7 +64,7 @@ nav a:hover {
 }
 .banner {
   max-width: 800px;
-  margin: 0.6rem auto 1rem auto;     /* 原来 2.5rem/2.2rem */
+  margin: auto auto  1rem auto;     /* 原来 2.5rem/2.2rem */
   text-align: center;
   padding: 1.1rem 0.6rem ;  /* 原来 2rem 1rem 2rem 1rem */
 }
@@ -178,22 +189,32 @@ main, .container {
   color: #2563eb;
 }
 footer {
-  text-align: center;
-  color: #dbeafe;                /* 与 header 导航颜色统一 */
-  font-size: 0.96rem;
-  padding: 1.2rem;
-  border-top: 1px solid #3b82f6;
-  background: linear-gradient(to right, #1e3a8a, #2563eb);  /* 统一蓝色渐变 */
-  margin-top: auto;
+  background-color: #f5f5f5;
+  padding: 12px 0;
+  font-size: 14px;
+  color: #444;
 }
-.footer-content a {
-  color: #bbdefb;
-  text-decoration: none;
-  margin: 0 0.2em;
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;        /* ⬅ 整体居中 */
+  gap: 36px;
+  max-width: 800px;
+  margin: 0 auto;                /* ⬅ 中央对齐 */
+  padding: 0 12px;
 }
-.footer-content a:hover {
-  color: #fff;
-  text-decoration: underline;
+
+.footer-logo {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  background-color: transparent;
+  flex-shrink: 0;
+}
+
+.footer-content {
+  gap: 4px;
 }
 
 @media (max-width: 900px) {
@@ -207,7 +228,7 @@ footer {
     padding: 1.2rem 1rem;
   }
   .banner {
-    padding: 1.5rem 0.4rem 1.5rem 0.4rem;
+    padding: 1.8rem 0.4rem 1.5rem 0.4rem;
   }
 }
 @media (max-width: 600px) {
