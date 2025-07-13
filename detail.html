@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Software Versions</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="header"></div>
+
+  <div class="container">
+    <a href="index.html" style="color: #2563eb;">&larr; Back to list</a>
+    <h1 id="software-name" style="margin:1em 0;">Loading...</h1>
+    <div id="version-list"></div>
+    <div id="error-message" style="color:red; margin-top:2em;"></div>
+  </div>
+
+  <div id="footer"></div>
+  <script>
+    fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => { document.getElementById("footer").outerHTML = html; });
+  </script>
+  <script>
+    fetch("/header.html")
+      .then(res => res.text())
+      .then(html => { document.getElementById("header").outerHTML = html; });
+  </script>
+  <script>
+    function getParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    async function loadSoftware() {
+      const name = getParam('name');
+      if (!name) return;
+
+      const response = await fetch(`data/${name}.json`);
+      if (!response.ok) {
+        document.getElementById('software-name').textContent = 'Software Not Found';
+        return;
+      }
+
+      const data = await response.json();
+      document.getElementById('software-name').textContent = data.software;
+
+      const versions = data.versions || [];
+      const list = document.getElementById('version-list');
+
+      versions.sort((a, b) => new Date(b.date) - new Date(a.date)); // 倒序
+      for (const v of versions) {
+        const block = document.createElement('div');
+        block.className = 'version-block';
+        block.innerHTML = `
+          <strong>Version:</strong> ${v.version} <br>
+          <strong>Date:</strong> ${v.date}
+        `;
+
+        const ul = document.createElement('ul');
+        (v.features || []).forEach(f => {
+          const li = document.createElement('li');
+          li.textContent = f;
+          ul.appendChild(li);
+        });
+
+        block.appendChild(ul);
+        list.appendChild(block);
+      }
+    }
+
+    loadSoftware();
+  </script>
+</body>
+</html>

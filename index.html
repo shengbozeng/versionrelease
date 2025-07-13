@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Biotech - AI Lingues团队</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <div id="header"></div>
+  <main>
+    <section class="tools" id="tools">
+      <h2 style="text-align:center; color:#1e3a8a;">核心产品与工具</h2>
+      <div class="tool-list">
+        <div class="tool-card">
+          <h3>分子智能识别平台</h3>
+          <p>快速识别与分析分子结构，自动生成预测报告</p>
+        </div>
+        <div class="tool-card">
+          <h3>医学图像AI分析工具</h3>
+          <p>病理切片/CT/MRI 等医学影像智能诊断与标注</p>
+        </div>
+        <div class="tool-card">
+          <h3>多组学分析套件</h3>
+          <p>一站式多组学数据处理与可视化</p>
+        </div>
+        <div class="tool-card">
+          <h3>AI医学论文助手</h3>
+          <p>智能文献检索、摘要提取与图表生成</p>
+        </div>
+      </div>
+    </section>
+    <section class="why">
+      <h2 style="text-align:center; color:#1e3a8a;">我们的优势</h2>
+      <div class="why-list">
+        <div class="why-card">专注生命科学和医学领域AI开发</div>
+        <div class="why-card">丰富的行业项目经验与技术积累</div>
+        <div class="why-card">数据安全合规，可长期合作</div>
+      </div>
+    </section>
+    <section class="cases">
+      <h2 style="text-align:center; color:#1e3a8a;">精选案例</h2>
+      <div class="case-list">
+        <div class="case-card">
+          <strong>医学影像AI项目</strong><br>
+          三甲医院，数十万病例智能诊断
+        </div>
+        <div class="case-card">
+          <strong>高通量筛选自动化</strong><br>
+          制药企业，分子创新流程加速
+        </div>
+        <div class="case-card">
+          <strong>论文智能辅助</strong><br>
+          科研院所，国际论文高效产出
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="footer"></div>
+  <script>
+    fetch("/header.html")
+      .then(res => res.text())
+      .then(html => { document.getElementById("header").outerHTML = html; });
+  </script>
+  <script>
+    fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => { document.getElementById("footer").outerHTML = html; });
+  </script>
+</body>
+</html>

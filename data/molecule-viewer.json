@@ -1,0 +1,23 @@
+{
+    "software": "Molecule Viewer",
+    "versions": [
+      {
+        "version": "0.2.0",
+        "date": "2025-07-13",
+        "features": [
+          "Fixed export rendering bug",
+          "Optimized torsion arrow display"
+        ],
+        "download_url":"https://example.com/molculeviewer_20250713.zip"
+      },
+      {
+        "version": "0.0.5",
+        "date": "2025-06-18",
+        "features": [
+          "Support for SDF molecule files"
+        ],
+        "url":"https://"
+      }
+    ]
+  }
+  
