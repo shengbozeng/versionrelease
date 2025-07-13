@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
-    <title>biotech - AI Lingues团队</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="style.css"/>
-  </head>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>biotech - AI Lingues团队</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
 <body>
   <div id="header"></div>
 
@@ -46,15 +48,23 @@
           const latest = data.versions[0];
           const softwareName = data.software || file.replace('.json', '');
           const linkName = file.replace('.json', '');
+          const featuresList = Array.isArray(latest.features)
+            ? latest.features.map(f => `<li>${f}</li>`).join('')
+            : '';
+
+          const downloadLink = latest.download_url
+            ? `<a href="${latest.download_url}">下载</a>`
+            : '';
 
           const card = document.createElement('div');
           card.className = 'software-card';
           card.innerHTML = `
-            <h2><a href="detail.html?name=${encodeURIComponent(linkName)}">${softwareName}</a></h2>
-            <p><strong>Latest Version:</strong> ${latest.version} <br>
-            <strong>Release Date:</strong> ${latest.date}</p>
-            <p>${latest.features?.[0] || ''}</p>
-          `;
+                            <h2><a href="detail.html?name=${encodeURIComponent(linkName)}">${softwareName}</a></h2>
+                            <p><strong>Latest Version:</strong> ${latest.version} <br>
+                            <strong>Release Date:</strong> ${latest.date}</p>
+                            <ul>${featuresList}</ul>
+                            ${downloadLink}
+                          `;
           container.appendChild(card);
         } catch (e) {
           console.warn(`Failed to load: ${file}`);
@@ -65,4 +75,5 @@
     loadIndex();
   </script>
 </body>
+
 </html>

@@ -1,23 +1,23 @@
 {
-    "software": "Molecule Viewer",
-    "versions": [
-      {
-        "version": "0.2.0",
-        "date": "2025-07-13",
-        "features": [
-          "Fixed export rendering bug",
-          "Optimized torsion arrow display"
-        ],
-        "download_url":"https://example.com/molculeviewer_20250713.zip"
-      },
-      {
-        "version": "0.0.5",
-        "date": "2025-06-18",
-        "features": [
-          "Support for SDF molecule files"
-        ],
-        "url":"https://"
-      }
-    ]
-  }
-  
+  "software": "Molecule Viewer",
+  "versions": [
+    {
+      "version": "0.2.0",
+      "date": "2025-07-13",
+      "features": [
+        "支持加载sdf格式文件数据加载，并逐一展现分子化合物空间结构可视化",
+        "支持查看当前分子化合物的属性及属性值；",
+        "支持复制所选属性值；",
+        "支持当前分子化合物属性及属性值导出为csv和excel格式；",
+        "支持当前分子化合物可视化导出为图片，图片格式支持jpg,png,tiff等",
+        "分子属性过滤器支持属性筛选过滤显示",
+        "可视化过滤器支持显示或隐藏标签和坐标系统",
+        "支持按索引位置直接跳转对应分子化合物结构",
+        "支持球棒模型",
+        "支持化学键旋转方向",
+        "支持新版本检查"
+      ],
+      "download_url": "https://pub-24419090abf5492a8e9b9229a5b4142a.r2.dev/molviewer-20250713.zip"
+    }
+  ]
+}
