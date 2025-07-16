@@ -2,6 +2,20 @@
   "software": "Molecule Viewer",
   "versions": [
     {
+      "version": "0.3.0",
+      "date": "2025-07-16",
+      "features": [
+        "修正标签显示在切换分子后被隐藏的问题；",
+        "修正导出图片背景颜色为白色的问题；",
+        "修正启动窗体，界面图片与进度条之间有gap的问题；",
+        "引入新的图标；",
+        "资源路径重构；",
+        "项目目录结构重构；",
+        "完成用户指南编写；"
+      ],
+      "download_url": "https://pub-24419090abf5492a8e9b9229a5b4142a.r2.dev/molviewer-20250716.zip"
+    },
+    {
       "version": "0.2.0",
       "date": "2025-07-13",
       "features": [
