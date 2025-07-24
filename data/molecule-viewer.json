@@ -2,6 +2,16 @@
   "software": "Molecule Viewer",
   "versions": [
     {
+      "version": "0.3.1",
+      "date": "2025-07-24",
+      "features": [
+        "修复当SDF文件路径包含中文等非英文字符时，无法读取的问题；",
+        "修复分子化合物属性列表中，属性名过滤器失效的问题；",
+        "修复帮助页面URL路径问题;"
+      ],
+      "download_url": "https://pub-24419090abf5492a8e9b9229a5b4142a.r2.dev/molviewer-20250724.zip"
+    },
+    {
       "version": "0.3.0",
       "date": "2025-07-16",
       "features": [
