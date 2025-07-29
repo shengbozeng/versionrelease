@@ -16,11 +16,25 @@
   </div>
 
   <div id="footer"></div>
-  <script>
-    fetch("/footer.html")
-      .then(res => res.text())
-      .then(html => { document.getElementById("footer").outerHTML = html; });
-  </script>
+<script>
+  fetch("/footer.html")
+    .then(res => res.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const footer = doc.body.firstElementChild;
+
+      // 填年份前，先操作 DOM 片段
+      const year = new Date().getFullYear();
+      footer.querySelectorAll('.js-current-year').forEach(el => {
+        el.textContent = year;
+      });
+
+      // 再插入页面
+      document.getElementById('footer').replaceWith(footer);
+    });
+</script>
+
   <script>
     fetch("/header.html")
       .then(res => res.text())

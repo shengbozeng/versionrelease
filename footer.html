@@ -2,9 +2,20 @@
   <div class="footer-container">
     <img src="/favicon.ico" alt="AI Lingues Logo" class="footer-logo">
     <div class="footer-content">
-      <p>&copy; 2025 Biotech · AI Lingues Team. All rights reserved.</p>
+      <p>&copy; <span class="js-current-year"></span> Biotech · AI Lingues Team. All rights reserved.</p>
       <p>Email: <a href="mailto:support@ailingues.com">support@ailingues.com</a></p>
       <p><a href="#">隐私政策</a> | <a href="#">服务条款</a></p>
     </div>
   </div>
+
+  <!-- ✅ 放在 footer.html 内部的脚本 -->
+  <script>
+    // 脚本只负责修改 footer 自己的内容
+    (function () {
+      const year = new Date().getFullYear();
+      document.querySelectorAll(".js-current-year").forEach(el => {
+        el.textContent = year;
+      });
+    })();
+  </script>
 </footer>

@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <title>Biotech - AI Lingues Team</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <div id="header"></div>
+  <div id="header"></div>
   <main>
     <section class="tools" id="tools">
-      <h2 style="text-align:center; color:#1e3a8a;">核心产品与工具</h2>
+      <h2 style="text-align:center; color:#1e3a8a;">核心服务与工具</h2>
       <div class="tool-list">
         <div class="tool-card">
           <h3>分子智能识别平台</h3>
@@ -32,31 +34,6 @@
         </div>
       </div>
     </section>
-    <section class="why">
-      <h2 style="text-align:center; color:#1e3a8a;">我们的优势</h2>
-      <div class="why-list">
-        <div class="why-card">专注生命科学和医学领域AI开发</div>
-        <div class="why-card">丰富的行业项目经验与技术积累</div>
-        <div class="why-card">数据安全合规，可长期合作</div>
-      </div>
-    </section>
-    <section class="cases">
-      <h2 style="text-align:center; color:#1e3a8a;">精选案例</h2>
-      <div class="case-list">
-        <div class="case-card">
-          <strong>医学影像AI项目</strong><br>
-          三甲医院，数十万病例智能诊断
-        </div>
-        <div class="case-card">
-          <strong>高通量筛选自动化</strong><br>
-          制药企业，分子创新流程加速
-        </div>
-        <div class="case-card">
-          <strong>论文智能辅助</strong><br>
-          科研院所，国际论文高效产出
-        </div>
-      </div>
-    </section>
   </main>
   <div id="footer"></div>
   <script>
@@ -67,7 +44,21 @@
   <script>
     fetch("/footer.html")
       .then(res => res.text())
-      .then(html => { document.getElementById("footer").outerHTML = html; });
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const footer = doc.body.firstElementChild;
+
+        // 填年份前，先操作 DOM 片段
+        const year = new Date().getFullYear();
+        footer.querySelectorAll('.js-current-year').forEach(el => {
+          el.textContent = year;
+        });
+
+        // 再插入页面
+        document.getElementById('footer').replaceWith(footer);
+      });
   </script>
 </body>
+
 </html>
