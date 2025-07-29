@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Software Versions</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div id="header"></div>
 
@@ -16,24 +18,24 @@
   </div>
 
   <div id="footer"></div>
-<script>
-  fetch("/footer.html")
-    .then(res => res.text())
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const footer = doc.body.firstElementChild;
+  <script>
+    fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const footer = doc.body.firstElementChild;
 
-      // 填年份前，先操作 DOM 片段
-      const year = new Date().getFullYear();
-      footer.querySelectorAll('.js-current-year').forEach(el => {
-        el.textContent = year;
+        // 填年份前，先操作 DOM 片段
+        const year = new Date().getFullYear();
+        footer.querySelectorAll('.js-current-year').forEach(el => {
+          el.textContent = year;
+        });
+
+        // 再插入页面
+        document.getElementById('footer').replaceWith(footer);
       });
-
-      // 再插入页面
-      document.getElementById('footer').replaceWith(footer);
-    });
-</script>
+  </script>
 
   <script>
     fetch("/header.html")
@@ -78,7 +80,10 @@
           ul.appendChild(li);
         });
 
+        const download_url = document.createElement('div')
+        download_url.innerHTML = `<a href="${v.download_url}">下载</a>`
         block.appendChild(ul);
+        block.appendChild(download_url);
         list.appendChild(block);
       }
     }
@@ -86,4 +91,5 @@
     loadSoftware();
   </script>
 </body>
+
 </html>
