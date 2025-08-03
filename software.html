@@ -72,7 +72,7 @@
           const downloadLink = latest.download_url
             ? `<a href="${latest.download_url}">下载</a>`
             : "";
-          const userguideLink = `<a href="/software/moleculeviewer/userguide/index.html">用户指南</a>`;
+          const userguideLink = `<a href="/software/moleculeviewer/userguide/${latest.version}/index.html">用户指南</a>`;
           const card = document.createElement("div");
           card.className = "software-card";
           card.innerHTML = `
