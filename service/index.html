@@ -63,7 +63,7 @@
           const response = await fetch(`${DATA_DIR}${file}`);
           const data = await response.json();
           const latest = data.versions[0];
-          const softwareName = data.software + "(运维中，即将开放)" || file.replace(".json", "");
+          const softwareName = data.software  || file.replace(".json", "");
           const linkName = file.replace(".json", "");
           const featuresList = Array.isArray(latest.features)
             ? latest.features.map((f) => `<li>${f}</li>`).join("")
