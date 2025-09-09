@@ -76,9 +76,7 @@
           const card = document.createElement("div");
           card.className = "software-card";
           card.innerHTML = `
-                            <h2><a href="detail.html?name=${encodeURIComponent(
-            linkName
-          )}">${softwareName}</a></h2>
+                            <h2><a href="${latest.visit_url}">${softwareName}</a></h2>
           <hr>
                             <p><strong>Latest Version:</strong> ${latest.version} <br>
                             <strong>Release Date:</strong> ${latest.date}</p>
