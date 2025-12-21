@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Biotech - AI Lingues Team</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css" />
+
+</head>
+
+<body>
+  <div id="header"></div>
+   <div class="container" id="software-list">
+    <div class="software-card">
+                            <h2><a href="/service/proteasome/inhibitor-screening">蛋白酶体小分子抑制剂筛选</a></h2>
+          <hr>
+                            <p><strong>(运维中，即将开放)</strong></p>
+                            <ul><li></li></ul>
+                            <!-- <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                              <a href="/service/proteasome/inhibitor-screening">访问</a>
+                              <a href="">用户指南</a>
+                            </div> -->
+                          </div>
+  </div>
+  <div id="footer"></div>
+  <script>
+    fetch("/header.html")
+      .then(res => res.text())
+      .then(html => { document.getElementById("header").outerHTML = html; });
+  </script>
+  <script>
+    fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const footer = doc.body.firstElementChild;
+
+        // 填年份前，先操作 DOM 片段
+        const year = new Date().getFullYear();
+        footer.querySelectorAll('.js-current-year').forEach(el => {
+          el.textContent = year;
+        });
+
+        // 再插入页面
+        document.getElementById('footer').replaceWith(footer);
+      });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Biotech - AI Lingues Team</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <div class="container" id="software-list">
+    <!-- JS 动态加载软件信息 -->
+  </div>
+  <div id="footer"></div>
+
+  <script>
+    fetch("/header.html")
+      .then((res) => res.text())
+      .then((html) => {
+        document.getElementById("header").outerHTML = html;
+      });
+  </script>
+  <script>
+    fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const footer = doc.body.firstElementChild;
+
+        // 填年份前，先操作 DOM 片段
+        const year = new Date().getFullYear();
+        footer.querySelectorAll('.js-current-year').forEach(el => {
+          el.textContent = year;
+        });
+
+        // 再插入页面
+        document.getElementById('footer').replaceWith(footer);
+      });
+  </script>
+
+  <script>
+    const DATA_DIR = "./data/";
+
+    async function loadIndex() {
+      const container = document.getElementById("software-list");
+      let indexList;
+
+      try {
+        const indexResp = await fetch(`${DATA_DIR}index.json`);
+        indexList = await indexResp.json();
+      } catch (e) {
+        container.innerHTML =
+          '<p style="color:red;">Failed to load software list.</p>';
+        return;
+      }
+
+      for (const file of indexList) {
+        try {
+          const response = await fetch(`${DATA_DIR}${file}`);
+          const data = await response.json();
+          const latest = data.versions[0];
+          const softwareName = data.software  || file.replace(".json", "");
+          const linkName = file.replace(".json", "");
+          const featuresList = Array.isArray(latest.features)
+            ? latest.features.map((f) => `<li>${f}</li>`).join("")
+            : "";
+
+          const downloadLink = latest.visit_url  
+            ? `<a href="${latest.visit_url}">访问</a>`
+            : "";
+          const userguideLink = `<a href="">用户指南</a>`;
+          const card = document.createElement("div");
+          card.className = "software-card";
+          card.innerHTML = `
+                            <h2><a href="${latest.visit_url}">${softwareName}</a></h2>
+          <hr>
+                            <p><strong>Latest Version:</strong> ${latest.version} <br>
+                            <strong>Release Date:</strong> ${latest.date}</p>
+                            <ul>${featuresList}</ul>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                              ${downloadLink}
+                              ${userguideLink}
+                            </div>
+                          `;
+          container.appendChild(card);
+        } catch (e) {
+          console.warn(`Failed to load: ${file}`);
+        }
+      }
+    }
+
+    loadIndex();
+  </script>
+</body>
+
+</html>
