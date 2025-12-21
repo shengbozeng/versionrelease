@@ -1,0 +1,9 @@
+{
+  "mimetype": {{$jobsMapByNodeKey.3ny06cpy0pw.f_mime_type}},
+  "meta": {{$jobsMapByNodeKey.3ny06cpy0pw.f_meta}},
+  "filename": {{$jobsMapByNodeKey.3ny06cpy0pw.f_file_name}},
+  "url": {{$jobsMapByNodeKey.3ny06cpy0pw.f_file_url}},
+  "path": {{$jobsMapByNodeKey.3ny06cpy0pw.f_file_path}},
+  "extname": {{$jobsMapByNodeKey.3ny06cpy0pw.f_extname}},
+  "title": {{$jobsMapByNodeKey.3ny06cpy0pw.f_title}}
+}
